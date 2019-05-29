@@ -1,8 +1,10 @@
 package brad.tech.res.img;
 
+import brad.tech.res.ResourceLoader;
+
 import java.net.URL;
 
-public enum ImageResource {
+public enum ImageResource implements ResourceLoader {
 
     // #
     _0("0.png"),
@@ -752,15 +754,17 @@ public enum ImageResource {
         this.resourceName = resourceName;
     }
 
-    public URL url() {
+    @Override
+    public URL getURL() {
         return ImageResource.class.getResource(this.resourceName);
+    }
+
+    @Override
+    public String getName() {
+        return resourceName;
     }
 
     public static URL find(String resource) {
         return ImageResource.class.getResource(resource);
-    }
-
-    public String getResourceName() {
-        return resourceName;
     }
 }
